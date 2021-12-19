@@ -90,15 +90,36 @@ console.log('lesson 2');
 // Реализовать функцию superSum которая принимает число в качестве аргумента, которое указывает на количество слагаемых
 // и что бы корректно работали следующие вызовы:
 
+// function superSum(num: number) {
+//     if (num <= 0) return 0;
+//     if (num === 1) return (n: number) => n;
+//
+//     let _arguments: number[] = [];
+//
+//     function helper(...args: number[]) {
+//         _arguments = [..._arguments, ...args];
+//         if (_arguments.length >= num) {
+//             _arguments.length = num;
+//             return _arguments.reduce((acc, current) => acc + current)
+//         } else {
+//             return helper;
+//         }
+//     }
+//     return helper
+// }
+// // @ts-ignore
+// console.log(superSum(0))
+// // @ts-ignore
+// console.log(superSum(3)(2)(5)(3))
+// // @ts-ignore
+// console.log(superSum(3)(2)(5,3))
+// // @ts-ignore
+// console.log(superSum(3)(2,5,3))
+// // @ts-ignore
+// console.log(superSum(3)(2,5)(3))
+// // @ts-ignore
+// console.log(superSum(3)(2,5)(3,9))
 
-
-
-// 1) superSum(0) //0
-// 2) superSum(3)(2)(5)(3) //10
-// 3) superSum(3)(2)(5,3) //10
-// 4) superSum(3)(2,5,3) //10
-// 5) superSum(3)(2,5)(3) //10
-// 6) superSum(3)(2,5)(3,9) //10
 
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 
@@ -153,10 +174,33 @@ console.log('lesson 2');
 // };
 //
 // function printList(list: any): any {
+//     console.log(list.value)
 //     if (list.next) {
-//         return list.value + printList(list.next)
+//         printList(list.next)
 //     }
-//     return list.value
+// }
+//
+// console.log(printList(listForTry))
+//
+// let listForTry = {
+//     value: 1,
+//     next: {
+//         value: 2,
+//         next: {
+//             value: 3,
+//             next: {
+//                 value: 4,
+//                 next: null
+//             }
+//         }
+//     }
+// };
+//
+// function printList(list: any): any {
+//     if (list.next) {
+//         printList(list.next)
+//     }
+//     console.log(list.value)
 // }
 //
 // console.log(printList(listForTry))
@@ -164,6 +208,17 @@ console.log('lesson 2');
 
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
+
+// let arr3 = [1, 2, [3, 4, [5, 6]]];
+// // // console.log(arr3.flat(1))
+//
+// function myFlat(array: any) {
+//     return array.reduce((acc: any, current: any) => {
+//         acc.concat(Array.isArray(current) ? myFlat(current) : current)
+//     }, [])
+// }
+//
+// console.log(myFlat(arr3))
 
 // just a plug
 export default () => {
