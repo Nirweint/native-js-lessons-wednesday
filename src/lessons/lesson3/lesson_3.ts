@@ -1,3 +1,5 @@
+import axios from "axios";
+
 console.log('lesson 3');
 
 // Event loop
@@ -15,6 +17,44 @@ console.log('lesson 3');
 // https://jsonplaceholder.typicode.com/posts/1
 // https://habr.com/ru/company/oleg-bunin/blog/417461/?_ga=2.54695343.543933152.1602500664-1040035071.1596811661
 
+const instance = axios.create({
+    baseURL: 'https://jsonplaceholder.typicode.com',
+})
+
+
+instance.get('/posts/1')
+    .then(res => console.log(res.data))
+    .catch(err => console.warn(err))
+
+instance.post('posts', {
+        title: 'test post method',
+        body: 'brr',
+        userId: 1,
+    },
+    {
+        headers:
+            {'Content-type': 'application/json; charset=UTF-8',}
+    })
+    .then(res => console.log(res))
+    .catch(err => console.warn(err))
+
+instance.put('posts/1', {
+        id: 1,
+        title: 'test put method',
+        body: 'brr chaka laka',
+        userId: 1,
+    },
+    {
+        headers:
+            {'Content-type': 'application/json; charset=UTF-8',}
+    })
+    .then(res => console.log(res))
+    .catch(err => console.warn(err))
+
+instance.delete('/posts/1')
+    .then(res => console.log(res))
+    .catch(err => console.warn(err))
 
 // just a plug
-export default ()=>{};
+export default () => {
+};
