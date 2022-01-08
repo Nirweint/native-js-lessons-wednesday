@@ -7,12 +7,18 @@ console.log('lesson 4');
 // Task 01
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
-
+// const promise = new Promise((resolve, reject) => {
+//     console.log("Promise is created")
+// })
+// console.log(promise)
 
 // Task 02
 // Создайте промис, который после создания сразу же переходит в состояние resolve
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
+
+// const resolvedPromise = Promise.resolve<string>('Promise Data')
+//     .then(res => console.log(res))
 
 
 // Task 03
@@ -20,12 +26,25 @@ console.log('lesson 4');
 // и возвращает строку 'Promise Error'
 // Получите данные промиса и выведите их в консоль
 
+// const rejectedPromise = Promise.reject('Promise Error')
+//     .catch(err => console.log(err))
+
 
 // Task 04
 // Создайте промис, который переходит в состояние resolved через 3с.
 // (Используйте setTimeout)
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
+
+// const promise = new Promise((resolve, reject) => {
+//
+//     setTimeout(() => {
+//         resolve('Promise Data')
+//         }, 3000
+//     )
+// })
+//
+// console.log(promise.then(res => console.log(res)))
 
 
 // Task 05
@@ -41,6 +60,49 @@ console.log('lesson 4');
 // свойства resolve и reject получают ссылки на соответствующие функции
 // resolve и reject. Следующие два обработчика запускают методы resolve и reject.
 
+type HandlePromiseType = {
+    promise: null | Promise<any>
+    resolve: null | Function
+    reject: null | Function
+    onSuccess: (paramName: string) => void
+    onError: (paramName: string) => void
+}
+
+export const handlePromise: HandlePromiseType = {
+    promise: null,
+    resolve: null,
+    reject: null,
+    onSuccess(paramName: string) {
+        return `Promise is resolved with data: ${paramName}`
+    },
+    onError(paramName: string) {
+        return `Promise is rejected with error: ${paramName}`
+    }
+}
+
+export const createPromise = () => {
+    handlePromise.promise = new Promise((resolve, reject) => {
+        handlePromise.resolve = resolve
+        handlePromise.reject = reject
+    })
+    handlePromise.promise
+        .then(handlePromise.onSuccess)
+        .catch(handlePromise.onError)
+
+
+    // @ts-ignore
+    window.obj = handlePromise
+}
+
+export const resolvePromise = () => {
+    handlePromise.resolve && handlePromise.resolve("Success")
+}
+
+export const rejectPromise = () => {
+    handlePromise.reject && handlePromise.reject("Fail")
+}
+
+
 
 // Task 06
 // Создайте промис, который через 1 с возвращает строку "My name is".
@@ -49,6 +111,23 @@ console.log('lesson 4');
 // Создайте функцию print, которая выводит в консоль значение своего параметра
 // Добавьте два метода then и передайте созданные функции.
 
+// const promise = new Promise((res) => {
+//     setTimeout(() => {
+//         res("My name is")
+//     }, 1000)
+// })
+//
+// const onSuccess = (param: any) => {
+//     return `${param} Alexander`
+// }
+//
+// const print = (param: any) => {
+//     console.log(param)
+// }
+//
+// promise
+//     .then(res => onSuccess(res))
+//     .then(res => print(res))
 
 // Task 7
 // Создайте три промиса. Первый промис возвращает объект { name: "Anna" } через 2с,
@@ -56,7 +135,43 @@ console.log('lesson 4');
 // Получите результаты работы промисов, объедините свойства объектов
 // и выведите в консоль {name, age, city}
 
+let namePromise = new Promise(res => {
+    setTimeout(() => {
+        res({name: "Anna"})
+    }, 2000)
+})
 
+let agePromise = new Promise(res => {
+    setTimeout(() => {
+        res({age: 16})
+    }, 3000)
+})
+
+let cityPromise = new Promise(res => {
+    setTimeout(() => {
+        res({city: "Pinsk"})
+    }, 4000)
+})
+
+let bigPromise = Promise.all([namePromise, agePromise, cityPromise])
+    .then(res => {
+        const result: ResType = {
+        // @ts-ignore
+            name: res[0].name,
+            // @ts-ignore
+            age: res[1].age,
+            // @ts-ignore
+            city: res[2].city,
+        }
+        console.log(result)
+    })
+
+type ResType = {
+    name: string
+    age: number
+    city: string
+}
 
 // just a plug
-export default ()=>{};
+export default () => {
+};
