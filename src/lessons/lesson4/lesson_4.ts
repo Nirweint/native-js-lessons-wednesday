@@ -172,6 +172,167 @@ type ResType = {
     city: string
 }
 
+//task 1
+// setTimeout(()=> console.log(1), 0);
+// console.log(2);
+// (() => console.log(3))();
+// Promise.resolve(console.log(4));
+// 2 3 4 1 completed
+
+// Task 2
+//
+// new Promise((res, rej) => {
+//     console.log(1);
+// })
+// new Promise((res, rej) => {
+//     setTimeout(()=> console.log(2), 0);
+// })
+// Promise.resolve(setTimeout(()=> console.log(3), 0));
+// console.log(4);
+// Promise.reject(console.log(5));
+// 1 4 5 2 3 completed
+
+
+
+// Task 3
+//
+// (function(){
+//     setTimeout(()=> console.log(1), 100);
+// })();
+// console.log(2);
+// new Promise((res, rej) => {
+//     setTimeout(()=> console.log(3), 50);
+// })
+// function f() {
+//     console.log(4);
+// }
+// Promise.resolve(console.log(5));
+// 2 5 3 1 completed
+
+
+// Task 3a
+// (function(){
+//     setTimeout(()=> console.log(1), 100);
+// })();
+// console.log(2);
+// let i = 0;
+// while ( i < 500000000 ) {
+//     i++
+// }
+// new Promise((res, rej) => {
+//     setTimeout(()=> console.log(3), 50);
+// })
+// function f() {
+//     console.log(4);
+// }
+// Promise.resolve(console.log(5));
+// 2 5 1 3 completed
+
+//Task 4
+// function f(num) {
+//     console.log(num);
+// }
+// Promise.resolve(1)
+//     .then(f);
+// (function(){
+//     console.log(2);
+// })();
+// console.log(3);
+// new Promise((res, rej) => {
+//     console.log(4);
+// });
+// setTimeout(f, 0, 5);
+// 2 3 4 1 5 completed
+
+
+// Task 5
+//
+// console.log(1);
+// function f() {
+//     console.log(2);
+// }
+// setTimeout(()=>{
+//     console.log(3);
+//     let p = new Promise((res, rej) => {
+//         console.log(4);
+//         res();
+//     });
+//     p.then(() => f())
+// },0);
+// let l = new Promise((res, rej) => {
+//     console.log(5);
+//     rej();
+// });
+// l.then(res => console.log(res)).catch(() => console.log(6));
+// console.log(7);
+// 1 5 7 6 3 4 2 completed
+
+//Task 6
+
+// setTimeout(() => console.log(1), 0);
+// console.log(2);
+// new Promise((resolve, reject) => {
+//     setTimeout(() => reject(console.log(3)), 1000);
+// }).catch(() => console.log(4));
+// console.log(5);
+// 2 5 1 3 4 completed
+
+
+// Task 7
+
+// async function sleep(ms) {
+//     setTimeout(() => {
+//         console.log(ms);
+//     }, ms*100);
+// }
+// async function sleep(ms) {
+//     return new Promise(res => {
+//         setTimeout(() => {
+//             res()
+//             console.log(ms);
+//         }, ms*100);
+//     })
+// }
+//
+//
+// async function show() {
+//     await sleep(3)
+//     await sleep(2)
+//     await sleep(1)
+// }
+//
+// show();
+
+
+// Task 8
+// let pr1 = new Promise((res) => {
+//     res(10);
+// });
+// let pr2 = new Promise((res) => {
+//     res(0)
+// });
+// pr1
+//     .then((res: any) => {
+//         console.log(res);
+//         return res + 2;
+//     })
+//     .then((res: any) => {
+//         console.log(res);
+//         return res + 2;
+//     })
+//     .then(console.log);
+// pr2
+//     .then((res: any) => {
+//         console.log(res);
+//         return res + 1;
+//     })
+//     .then((res: any) => {
+//         console.log(res);
+//         return res + 1;
+//     })
+//     .then(console.log);
+// 10 0 12 1 14 2 completed
+
 // just a plug
 export default () => {
 };
