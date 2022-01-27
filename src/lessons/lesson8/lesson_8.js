@@ -1,64 +1,112 @@
 // Task 1
 // Есть некоторая строка (const str = 'fgfggg';), что будет, если мы возьмем str[0]
+// f
 
 // Task 2
 // Реализуйте необходимый код, что бы выражение (2).plus(3).minus(1) сработало и вернуло 4
+//
+// Number.prototype.plus = function(n){
+// 	return this + n;
+// }
+// Number.prototype.minus = function(n){
+// 	return this - n;
+// }
+//
+// console.log((2).plus(3).minus(1))
 
 // Task 3
 // Реализуйте функцию, которая принимает следующие аргументы (строки) '*', '1', 'b', '1c', и возвращает строку '1*b*1c'
+
+// const func = (semi, ...args) => {
+// 	let str = '';
+// 	for(let i = 0; i < args.length; i++) {
+// 		str += args[i] + semi
+// 	}
+// 	return str.slice(0, str.length - 1)
+// }
+// console.log(func('*', '1', 'b', '1c'))
 
 // Task 4
 // Напишите функцию которая найдет сумму всех вершин в структуре данны типа tree
 // Рекурсивно
 // В цикле
 
-const tree = {
-	valueNode: 3,
-	next: [{
-		valueNode: 1,
-		next: null
-	},
-		{
-			valueNode: 3,
-			next: null
-		},
-		{
-			valueNode: 2,
-			next: null
-		},
-		{
-			valueNode: 2,
-			next: [
-				{
-					valueNode: 1,
-					next: null
-				},
-				{
-					valueNode: 5,
-					next: null
-				}
-			]
-		}]
-};
+// const tree = {
+// 	valueNode: 3,
+// 	next: [{
+// 		valueNode: 1,
+// 		next: null
+// 	},
+// 		{
+// 			valueNode: 3,
+// 			next: null
+// 		},
+// 		{
+// 			valueNode: 2,
+// 			next: null
+// 		},
+// 		{
+// 			valueNode: 2,
+// 			next: [
+// 				{
+// 					valueNode: 1,
+// 					next: null
+// 				},
+// 				{
+// 					valueNode: 5,
+// 					next: null
+// 				}
+// 			]
+// 		}]
+// };
+//
+// function countNodes(t) {
+// 	let count = 0;
+// 	function helper(tree) {
+// 		count += tree.valueNode;
+// 		if(tree.next !== null) {
+// 			tree.next.forEach(item => helper(item)) // tree.next.forEach(helper)
+// 		}
+// 	}
+// 	helper(t);
+// 	return count;
+// }
+//
+// function getSum(obj) {
+// 	let root = [obj];
+// 	let sum = 0;
+// 	let current;
+// 	while(root.length > 0) {
+// 		current = root.shift();
+// 		sum += current.valueNode;
+// 		if (current.next !== null) {
+// 			for (let i = 0; i <current.next.length; i++) {
+// 				root.push(current.next[i]);
+// 			}
+// 		}
+// 	}
+// }
+//
+// console.log(countNodes(tree))
 
 // Task 5
 // исправить код, что бы работал правильно
-
-for (var i = 0; i < 10; i++) {
-	setTimeout(function () {
-		console.log(i);
-	}, 100);
-}
+//
+// for (let i = 0; i < 10; i++) {
+// 	setTimeout(function () {
+// 		console.log(i);
+// 	}, 100);
+// }
 
 // Task 6
 // Реализуйте функцию Foo, что бы все корректно работало
 
-function Book(name, author) {
-	this.name = name;
-	this.author = author;
-	return this;
-}
-
+// function Book(name, author) {
+// 	this.name = name;
+// 	this.author = author;
+// 	return this;
+// }
+//
 // function Foo(Book, 'Учебник javascript', 'Петр Сергеев')
 //
 // var book = Foo(Book, 'js', 'petr');
@@ -69,6 +117,7 @@ function Book(name, author) {
 
 // Task 8
 // Реализовать функцию f: f(1)(2)(3)() -> 6, f(0)(3)(1)(5)() -> 8
+
 
 // Task 9
 // Реализовать функции seven, plus, one, five, minus, two так, что бы следующие вызовы работали seven(plus(one())) -> 8. five(minus(two())) -> 3
@@ -90,25 +139,25 @@ function Book(name, author) {
 // Необходимо написать функцию, возвращающую значения всех вершин дерева
 // getTreeValues(tree); // => [1, 2, 3, 4, 5, 6, 7]
 
-const tree2 = {
-	value: 1,
-	children: [
-		{
-			value: 2,
-			children: [
-				{ value: 4 },
-				{ value: 5 },
-			]
-		},
-		{
-			value: 3,
-			children: [
-				{ value: 6 },
-				{ value: 7 },
-			]
-		}
-	]
-};
+// const tree2 = {
+// 	value: 1,
+// 	children: [
+// 		{
+// 			value: 2,
+// 			children: [
+// 				{ value: 4 },
+// 				{ value: 5 },
+// 			]
+// 		},
+// 		{
+// 			value: 3,
+// 			children: [
+// 				{ value: 6 },
+// 				{ value: 7 },
+// 			]
+// 		}
+// 	]
+// };
 
 // Task 15
 // Необходимо написать функцию, возвращающую сумму всех вершин дерева из Task 14
@@ -148,14 +197,16 @@ const tree2 = {
 // Task 21
 // Что выведет консоль?
 
-Promise
-	.resolve()
-	.then(() => console.log(1))
-	.then(() => console.log(2))
-	.then(() => console.log(3));
+// Promise
+// 	.resolve()
+// 	.then(() => console.log(1))
+// 	.then(() => console.log(2))
+// 	.then(() => console.log(3));
+//
+// Promise
+// 	.resolve()
+// 	.then(() => console.log(4))
+// 	.then(() => console.log(5))
+// 	.then(() => console.log(6));
 
-Promise
-	.resolve()
-	.then(() => console.log(4))
-	.then(() => console.log(5))
-	.then(() => console.log(6));
+// 1 4 2 5 3 6
